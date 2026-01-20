@@ -4,3 +4,12 @@
 __pycache__
 *.spyproject
 *.idea
+
+# Virtual environment
+venv/
+env/
+ENV/
+
+# Checkpoints and model files
+checkpoints/
+*.pth
