@@ -95,9 +95,12 @@ def visualize_slice(cbct, sct, rtstruct, slice_idx, patient_name, save_path=None
     # Input CBCT
     im1 = axes[0].imshow(cbct_slice, cmap='gray', vmin=cbct.min(), vmax=cbct.max())
     axes[0].set_title(f'Input CBCT\nSlice {slice_idx}/{depth-1}', fontsize=12, fontweight='bold')
-    axes[0].text(0.5, -0.08, f'Slice HU: [{cbct_slice_min:.1f}, {cbct_slice_max:.1f}], Mean: {cbct_slice_mean:.1f}\n'
-                             f'Volume HU: [{cbct_hu_min:.1f}, {cbct_hu_max:.1f}], Mean: {cbct_hu_mean:.1f}', 
-                 transform=axes[0].transAxes, ha='center', fontsize=9,
+    axes[0].text(0.5, -0.12, f'Slice: [{cbct_slice_min:.3f}, {cbct_slice_max:.3f}], Mean: {cbct_slice_mean:.3f}\n'
+                             f'Volume: [{cbct_hu_min:.3f}, {cbct_hu_max:.3f}], Mean: {cbct_hu_mean:.3f}\n'
+                             f'(Normalized 0-1)\n'
+                             f'Typical CT HU: Air=-1000, Lung=-500~-900,\n'
+                             f'Soft tissue=-100~100, Bone=200~3000', 
+                 transform=axes[0].transAxes, ha='center', fontsize=7,
                  bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
     axes[0].axis('off')
     plt.colorbar(im1, ax=axes[0], fraction=0.046, pad=0.04)
@@ -105,9 +108,12 @@ def visualize_slice(cbct, sct, rtstruct, slice_idx, patient_name, save_path=None
     # Output sCT
     im2 = axes[1].imshow(sct_slice, cmap='gray', vmin=sct.min(), vmax=sct.max())
     axes[1].set_title(f'Output sCT\nSlice {slice_idx}/{depth-1}', fontsize=12, fontweight='bold')
-    axes[1].text(0.5, -0.08, f'Slice HU: [{sct_slice_min:.1f}, {sct_slice_max:.1f}], Mean: {sct_slice_mean:.1f}\n'
-                             f'Volume HU: [{sct_hu_min:.1f}, {sct_hu_max:.1f}], Mean: {sct_hu_mean:.1f}', 
-                 transform=axes[1].transAxes, ha='center', fontsize=9,
+    axes[1].text(0.5, -0.12, f'Slice: [{sct_slice_min:.3f}, {sct_slice_max:.3f}], Mean: {sct_slice_mean:.3f}\n'
+                             f'Volume: [{sct_hu_min:.3f}, {sct_hu_max:.3f}], Mean: {sct_hu_mean:.3f}\n'
+                             f'(Normalized 0-1)\n'
+                             f'Typical CT HU: Air=-1000, Lung=-500~-900,\n'
+                             f'Soft tissue=-100~100, Bone=200~3000', 
+                 transform=axes[1].transAxes, ha='center', fontsize=7,
                  bbox=dict(boxstyle='round', facecolor='lightblue', alpha=0.5))
     axes[1].axis('off')
     plt.colorbar(im2, ax=axes[1], fraction=0.046, pad=0.04)
@@ -142,10 +148,14 @@ def visualize_slice(cbct, sct, rtstruct, slice_idx, patient_name, save_path=None
             legend_labels.append(f'Label {int(label)}: {label_names.get(int(label), "Unknown")}')
     
     if legend_labels:
-        fig.text(0.5, 0.02, ' | '.join(legend_labels), ha='center', fontsize=10)
+        fig.text(0.5, 0.04, ' | '.join(legend_labels), ha='center', fontsize=10)
+    
+    # Add typical HU ranges reference at the bottom
+    fig.text(0.5, 0.01, 'Note: Values are normalized (0-1). CBCT→CT translation improves HU accuracy. CT HU: Air=-1000, Lung=-500~-900, Soft tissue=-100~100, Bone=200~3000', 
+             ha='center', fontsize=8, style='italic', color='gray')
     
     plt.suptitle(f'Patient: {patient_name}', fontsize=14, fontweight='bold', y=0.98)
-    plt.subplots_adjust(bottom=0.15)  # Make room for HU text
+    plt.subplots_adjust(bottom=0.18)  # Make room for HU text and reference ranges
     plt.tight_layout()
     
     if save_path:
@@ -162,7 +172,7 @@ def visualize_interactive(cbct, sct, rtstruct, patient_name):
     
     # Create figure with 3 subplots
     fig, axes = plt.subplots(1, 3, figsize=(15, 5))
-    plt.subplots_adjust(bottom=0.15)
+    plt.subplots_adjust(bottom=0.18)
     
     # Initial slice (middle)
     initial_slice = depth // 2
@@ -186,9 +196,15 @@ def visualize_interactive(cbct, sct, rtstruct, patient_name):
     im1 = axes[0].imshow(cbct_slice, cmap='gray', vmin=cbct.min(), vmax=cbct.max())
     cbct_hu_min, cbct_hu_max = cbct.min(), cbct.max()
     cbct_hu_mean = cbct.mean()
+    cbct_slice_min, cbct_slice_max = cbct_slice.min(), cbct_slice.max()
+    cbct_slice_mean = cbct_slice.mean()
     axes[0].set_title(f'Input CBCT\nSlice {initial_slice}/{depth-1}', fontsize=12, fontweight='bold')
-    axes[0].text(0.5, -0.08, f'HU Range: [{cbct_hu_min:.1f}, {cbct_hu_max:.1f}]\nMean: {cbct_hu_mean:.1f}', 
-                 transform=axes[0].transAxes, ha='center', fontsize=10, 
+    axes[0].text(0.5, -0.12, f'Slice: [{cbct_slice_min:.3f}, {cbct_slice_max:.3f}], Mean: {cbct_slice_mean:.3f}\n'
+                             f'Volume: [{cbct_hu_min:.3f}, {cbct_hu_max:.3f}], Mean: {cbct_hu_mean:.3f}\n'
+                             f'(Normalized 0-1)\n'
+                             f'Typical CT HU: Air=-1000, Lung=-500~-900,\n'
+                             f'Soft tissue=-100~100, Bone=200~3000', 
+                 transform=axes[0].transAxes, ha='center', fontsize=7,
                  bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
     axes[0].axis('off')
     
@@ -196,9 +212,15 @@ def visualize_interactive(cbct, sct, rtstruct, patient_name):
     im2 = axes[1].imshow(sct_slice, cmap='gray', vmin=sct.min(), vmax=sct.max())
     sct_hu_min, sct_hu_max = sct.min(), sct.max()
     sct_hu_mean = sct.mean()
+    sct_slice_min, sct_slice_max = sct_slice.min(), sct_slice.max()
+    sct_slice_mean = sct_slice.mean()
     axes[1].set_title(f'Output sCT\nSlice {initial_slice}/{depth-1}', fontsize=12, fontweight='bold')
-    axes[1].text(0.5, -0.08, f'HU Range: [{sct_hu_min:.1f}, {sct_hu_max:.1f}]\nMean: {sct_hu_mean:.1f}', 
-                 transform=axes[1].transAxes, ha='center', fontsize=10,
+    axes[1].text(0.5, -0.12, f'Slice: [{sct_slice_min:.3f}, {sct_slice_max:.3f}], Mean: {sct_slice_mean:.3f}\n'
+                             f'Volume: [{sct_hu_min:.3f}, {sct_hu_max:.3f}], Mean: {sct_hu_mean:.3f}\n'
+                             f'(Normalized 0-1)\n'
+                             f'Typical CT HU: Air=-1000, Lung=-500~-900,\n'
+                             f'Soft tissue=-100~100, Bone=200~3000', 
+                 transform=axes[1].transAxes, ha='center', fontsize=7,
                  bbox=dict(boxstyle='round', facecolor='lightblue', alpha=0.5))
     axes[1].axis('off')
     
@@ -216,7 +238,7 @@ def visualize_interactive(cbct, sct, rtstruct, patient_name):
             legend_labels.append(f'Label {int(label)}: {label_names.get(int(label), "Unknown")}')
     
     if legend_labels:
-        fig.text(0.5, 0.08, ' | '.join(legend_labels), ha='center', fontsize=10)
+        fig.text(0.5, 0.10, ' | '.join(legend_labels), ha='center', fontsize=10)
     
     plt.suptitle(f'Patient: {patient_name} - Use slider to scroll through slices', 
                  fontsize=14, fontweight='bold', y=0.98)
@@ -224,6 +246,10 @@ def visualize_interactive(cbct, sct, rtstruct, patient_name):
     # Create slider
     ax_slider = plt.axes([0.2, 0.02, 0.6, 0.03])
     slider = Slider(ax_slider, 'Slice', 0, depth-1, valinit=initial_slice, valstep=1, valfmt='%d')
+    
+    # Add typical HU ranges reference at the bottom
+    fig.text(0.5, 0.05, 'Note: Values are normalized (0-1). CBCT→CT translation improves HU accuracy. CT HU: Air=-1000, Lung=-500~-900, Soft tissue=-100~100, Bone=200~3000', 
+             ha='center', fontsize=8, style='italic', color='gray')
     
     def update_slice(val):
         """Update all three images when slider changes"""
@@ -247,8 +273,11 @@ def visualize_interactive(cbct, sct, rtstruct, patient_name):
         for txt in axes[0].texts:
             if txt.get_position()[1] < 0:  # Text below axis
                 txt.remove()
-        axes[0].text(0.5, -0.08, f'HU Range: [{cbct_slice_min:.1f}, {cbct_slice_max:.1f}]\nMean: {cbct_slice_mean:.1f}', 
-                     transform=axes[0].transAxes, ha='center', fontsize=10,
+        axes[0].text(0.5, -0.12, f'Slice: [{cbct_slice_min:.3f}, {cbct_slice_max:.3f}], Mean: {cbct_slice_mean:.3f}\n'
+                                 f'(Normalized 0-1)\n'
+                                 f'CBCT: Less accurate HU due to\n'
+                                 f'scatter artifacts & noise', 
+                     transform=axes[0].transAxes, ha='center', fontsize=7,
                      bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
         
         # Update sCT
@@ -258,8 +287,12 @@ def visualize_interactive(cbct, sct, rtstruct, patient_name):
         for txt in axes[1].texts:
             if txt.get_position()[1] < 0:  # Text below axis
                 txt.remove()
-        axes[1].text(0.5, -0.08, f'HU Range: [{sct_slice_min:.1f}, {sct_slice_max:.1f}]\nMean: {sct_slice_mean:.1f}', 
-                     transform=axes[1].transAxes, ha='center', fontsize=10,
+        axes[1].text(0.5, -0.12, f'Slice: [{sct_slice_min:.3f}, {sct_slice_max:.3f}], Mean: {sct_slice_mean:.3f}\n'
+                                 f'(Normalized 0-1)\n'
+                                 f'CT: Accurate HU values\n'
+                                 f'Air=-1000, Lung=-500~-900,\n'
+                                 f'Soft tissue=-100~100, Bone=200~3000', 
+                     transform=axes[1].transAxes, ha='center', fontsize=7,
                      bbox=dict(boxstyle='round', facecolor='lightblue', alpha=0.5))
         
         # Update RTSTRUCTS overlay

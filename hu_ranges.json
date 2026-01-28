@@ -1,0 +1,527 @@
+{
+  "LCTSC-Test-S1-101": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.3231736123561859,
+    "std_HU": 0.15097522735595703,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S1-101/LCTSC-Test-S1-101_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S1-101_2": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.3231736123561859,
+    "std_HU": 0.15097522735595703,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S1-101_2/LCTSC-Test-S1-101_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S1-101_5": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.3231736123561859,
+    "std_HU": 0.15097522735595703,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S1-101_5/LCTSC-Test-S1-101_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S1-101_6": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.3231736123561859,
+    "std_HU": 0.15097522735595703,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S1-101_6/LCTSC-Test-S1-101_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S1-102": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.3124156892299652,
+    "std_HU": 0.1506328284740448,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S1-102/LCTSC-Test-S1-102_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S1-102_1": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.3124156892299652,
+    "std_HU": 0.1506328284740448,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S1-102_1/LCTSC-Test-S1-102_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S1-102_2": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.3124156892299652,
+    "std_HU": 0.1506328284740448,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S1-102_2/LCTSC-Test-S1-102_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S1-103": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.3130653202533722,
+    "std_HU": 0.15745016932487488,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S1-103/LCTSC-Test-S1-103_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S1-103_1": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.3130653202533722,
+    "std_HU": 0.15745016932487488,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S1-103_1/LCTSC-Test-S1-103_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S1-103_5": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.3130653202533722,
+    "std_HU": 0.15745016932487488,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S1-103_5/LCTSC-Test-S1-103_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S1-103_6": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.3130653202533722,
+    "std_HU": 0.15745016932487488,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S1-103_6/LCTSC-Test-S1-103_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S1-104": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.31369107961654663,
+    "std_HU": 0.15636363625526428,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S1-104/LCTSC-Test-S1-104_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S1-104_1": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.31369107961654663,
+    "std_HU": 0.15636363625526428,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S1-104_1/LCTSC-Test-S1-104_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S1-104_2": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.31369107961654663,
+    "std_HU": 0.15636363625526428,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S1-104_2/LCTSC-Test-S1-104_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S1-104_5": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.31369107961654663,
+    "std_HU": 0.15636363625526428,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S1-104_5/LCTSC-Test-S1-104_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S1-104_6": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.31369107961654663,
+    "std_HU": 0.15636363625526428,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S1-104_6/LCTSC-Test-S1-104_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S1-201_1": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.31098753213882446,
+    "std_HU": 0.13271984457969666,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S1-201_1/LCTSC-Test-S1-201_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S1-201_2": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.31098753213882446,
+    "std_HU": 0.13271984457969666,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S1-201_2/LCTSC-Test-S1-201_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S1-201_5": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.31098753213882446,
+    "std_HU": 0.13271984457969666,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S1-201_5/LCTSC-Test-S1-201_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S1-202_1": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.34327515959739685,
+    "std_HU": 0.1573800891637802,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S1-202_1/LCTSC-Test-S1-202_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S1-202_2": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.34327515959739685,
+    "std_HU": 0.1573800891637802,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S1-202_2/LCTSC-Test-S1-202_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S1-203": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.27291321754455566,
+    "std_HU": 0.16339202225208282,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S1-203/LCTSC-Test-S1-203_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S1-203_1": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.27291321754455566,
+    "std_HU": 0.16339202225208282,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S1-203_1/LCTSC-Test-S1-203_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S1-203_6": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.27291321754455566,
+    "std_HU": 0.16339202225208282,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S1-203_6/LCTSC-Test-S1-203_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S1-204": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.1996413916349411,
+    "std_HU": 0.15113647282123566,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S1-204/LCTSC-Test-S1-204_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S1-204_2": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.1996413916349411,
+    "std_HU": 0.15113647282123566,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S1-204_2/LCTSC-Test-S1-204_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S1-204_5": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.1996413916349411,
+    "std_HU": 0.15113647282123566,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S1-204_5/LCTSC-Test-S1-204_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S1-204_6": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.1996413916349411,
+    "std_HU": 0.15113647282123566,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S1-204_6/LCTSC-Test-S1-204_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S2-101_2": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.3761252760887146,
+    "std_HU": 0.14459668099880219,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S2-101_2/LCTSC-Test-S2-101_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S2-101_5": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.3761252760887146,
+    "std_HU": 0.14459668099880219,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S2-101_5/LCTSC-Test-S2-101_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S2-101_6": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.3761252760887146,
+    "std_HU": 0.14459668099880219,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S2-101_6/LCTSC-Test-S2-101_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S2-102": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.3114639222621918,
+    "std_HU": 0.15188057720661163,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S2-102/LCTSC-Test-S2-102_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S2-102_5": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.3114639222621918,
+    "std_HU": 0.15188057720661163,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S2-102_5/LCTSC-Test-S2-102_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S2-102_6": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.3114639222621918,
+    "std_HU": 0.15188057720661163,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S2-102_6/LCTSC-Test-S2-102_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S2-103": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.2916102111339569,
+    "std_HU": 0.1509825885295868,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S2-103/LCTSC-Test-S2-103_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S2-103_1": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.2916102111339569,
+    "std_HU": 0.1509825885295868,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S2-103_1/LCTSC-Test-S2-103_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S2-103_2": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.2916102111339569,
+    "std_HU": 0.1509825885295868,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S2-103_2/LCTSC-Test-S2-103_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S2-103_5": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.2916102111339569,
+    "std_HU": 0.1509825885295868,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S2-103_5/LCTSC-Test-S2-103_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S2-103_6": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.2916102111339569,
+    "std_HU": 0.1509825885295868,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S2-103_6/LCTSC-Test-S2-103_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S2-104": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.3333587348461151,
+    "std_HU": 0.12273701280355453,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S2-104/LCTSC-Test-S2-104_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S2-104_5": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.3333587348461151,
+    "std_HU": 0.12273701280355453,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S2-104_5/LCTSC-Test-S2-104_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S2-201": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.3378186523914337,
+    "std_HU": 0.1388782411813736,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S2-201/LCTSC-Test-S2-201_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S2-201_1": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.3378186523914337,
+    "std_HU": 0.1388782411813736,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S2-201_1/LCTSC-Test-S2-201_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S2-201_2": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.3378186523914337,
+    "std_HU": 0.1388782411813736,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S2-201_2/LCTSC-Test-S2-201_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S2-201_5": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.3378186523914337,
+    "std_HU": 0.1388782411813736,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S2-201_5/LCTSC-Test-S2-201_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S2-202": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.28572341799736023,
+    "std_HU": 0.18509547412395477,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S2-202/LCTSC-Test-S2-202_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S2-202_1": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.28572341799736023,
+    "std_HU": 0.18509547412395477,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S2-202_1/LCTSC-Test-S2-202_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S2-202_5": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.28572341799736023,
+    "std_HU": 0.18509547412395477,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S2-202_5/LCTSC-Test-S2-202_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S2-202_6": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.28572341799736023,
+    "std_HU": 0.18509547412395477,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S2-202_6/LCTSC-Test-S2-202_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S2-203": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.34879064559936523,
+    "std_HU": 0.13209958374500275,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S2-203/LCTSC-Test-S2-203_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S2-203_1": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.34879064559936523,
+    "std_HU": 0.13209958374500275,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S2-203_1/LCTSC-Test-S2-203_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S2-203_2": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.34879064559936523,
+    "std_HU": 0.13209958374500275,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S2-203_2/LCTSC-Test-S2-203_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S2-203_5": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.34879064559936523,
+    "std_HU": 0.13209958374500275,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S2-203_5/LCTSC-Test-S2-203_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S2-203_6": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.34879064559936523,
+    "std_HU": 0.13209958374500275,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S2-203_6/LCTSC-Test-S2-203_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S2-204": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.3327500522136688,
+    "std_HU": 0.1529209166765213,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S2-204/LCTSC-Test-S2-204_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S2-204_1": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.3327500522136688,
+    "std_HU": 0.1529209166765213,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S2-204_1/LCTSC-Test-S2-204_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S2-204_2": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.3327500522136688,
+    "std_HU": 0.1529209166765213,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S2-204_2/LCTSC-Test-S2-204_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S2-204_5": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.3327500522136688,
+    "std_HU": 0.1529209166765213,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S2-204_5/LCTSC-Test-S2-204_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S2-204_6": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.3327500522136688,
+    "std_HU": 0.1529209166765213,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S2-204_6/LCTSC-Test-S2-204_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S3-101": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.21738272905349731,
+    "std_HU": 0.08328820765018463,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S3-101/LCTSC-Test-S3-101_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S3-101_6": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.21738272905349731,
+    "std_HU": 0.08328820765018463,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S3-101_6/LCTSC-Test-S3-101_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S3-102_2": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.1911087930202484,
+    "std_HU": 0.09508269280195236,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S3-102_2/LCTSC-Test-S3-102_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S3-102_6": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.1911087930202484,
+    "std_HU": 0.09508269280195236,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S3-102_6/LCTSC-Test-S3-102_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S3-103": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.21759437024593353,
+    "std_HU": 0.09190607815980911,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S3-103/LCTSC-Test-S3-103_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S3-103_2": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.21759437024593353,
+    "std_HU": 0.09190607815980911,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S3-103_2/LCTSC-Test-S3-103_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S3-103_5": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.21759437024593353,
+    "std_HU": 0.09190607815980911,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S3-103_5/LCTSC-Test-S3-103_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S3-103_6": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.21759437024593353,
+    "std_HU": 0.09190607815980911,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S3-103_6/LCTSC-Test-S3-103_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S3-104": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.2825469374656677,
+    "std_HU": 0.18156859278678894,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S3-104/LCTSC-Test-S3-104_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S3-104_1": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.2825469374656677,
+    "std_HU": 0.18156859278678894,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S3-104_1/LCTSC-Test-S3-104_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S3-104_5": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.2825469374656677,
+    "std_HU": 0.18156859278678894,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S3-104_5/LCTSC-Test-S3-104_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S3-104_6": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.2825469374656677,
+    "std_HU": 0.18156859278678894,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S3-104_6/LCTSC-Test-S3-104_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S3-201": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.21340365707874298,
+    "std_HU": 0.08590815961360931,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S3-201/LCTSC-Test-S3-201_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S3-201_1": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.21340365707874298,
+    "std_HU": 0.08590815961360931,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S3-201_1/LCTSC-Test-S3-201_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S3-201_5": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.21340365707874298,
+    "std_HU": 0.08590815961360931,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S3-201_5/LCTSC-Test-S3-201_CT_plan_50.nrrd"
+  },
+  "LCTSC-Test-S3-202_1": {
+    "min_HU": 0.0,
+    "max_HU": 1.0,
+    "mean_HU": 0.1621910184621811,
+    "std_HU": 0.10994653403759003,
+    "ct_file": "/Volumes/T9/test_psCBCT_AAPM/LCTSC-Test-S3-202_1/LCTSC-Test-S3-202_CT_plan_50.nrrd"
+  }
+}
