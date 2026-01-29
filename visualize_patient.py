@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Visualize patient results: Input CBCT, Output sCT, and Output RTSTRUCTS
+Visualize patient results: Input CBCT, Ground Truth CT, Output sCT, and Output RTSTRUCTS
 
 Usage:
     python visualize_patient.py --patient 0
@@ -19,7 +19,7 @@ from pathlib import Path
 
 
 def load_input_data(patient_idx, dataroot='./datasets/psAAPM', phase='test'):
-    """Load input CBCT from npz file"""
+    """Load input CBCT and ground truth CT from npz file"""
     data_dir = Path(dataroot) / phase
     npz_files = sorted(list(data_dir.glob('*.npz')))
     
@@ -30,13 +30,14 @@ def load_input_data(patient_idx, dataroot='./datasets/psAAPM', phase='test'):
     data = np.load(npz_path)
     
     cbct = data['CBCT']  # Input CBCT image
+    ct_gt = data['CT']   # Ground truth CT image
     patient_name = npz_path.stem
     
     print(f"Loaded input: {npz_path}")
-    print(f"  CBCT shape: {cbct.shape}")
-    print(f"  CBCT range: [{cbct.min():.2f}, {cbct.max():.2f}]")
+    print(f"  CBCT shape: {cbct.shape}, range: [{cbct.min():.2f}, {cbct.max():.2f}]")
+    print(f"  CT (GT) shape: {ct_gt.shape}, range: [{ct_gt.min():.2f}, {ct_gt.max():.2f}]")
     
-    return cbct, patient_name
+    return cbct, ct_gt, patient_name
 
 
 def load_output_data(patient_name, results_dir='./results/msk_aapm_stabilized_eso4/test_latest/npz_images'):
@@ -65,8 +66,8 @@ def load_output_data(patient_name, results_dir='./results/msk_aapm_stabilized_es
     return sct, rtstruct
 
 
-def visualize_slice(cbct, sct, rtstruct, slice_idx, patient_name, save_path=None):
-    """Visualize a single slice from all three volumes"""
+def visualize_slice(cbct, ct_gt, sct, rtstruct, slice_idx, patient_name, save_path=None):
+    """Visualize a single slice from all four volumes: CBCT, Ground Truth CT, Output sCT, and RTSTRUCTS"""
     depth = cbct.shape[0]
     
     if slice_idx >= depth:
@@ -75,17 +76,23 @@ def visualize_slice(cbct, sct, rtstruct, slice_idx, patient_name, save_path=None
     
     # Get slices (assuming DxHxW format)
     cbct_slice = cbct[slice_idx, :, :]
+    ct_gt_slice = ct_gt[slice_idx, :, :]
     sct_slice = sct[slice_idx, :, :]
     rtstruct_slice = rtstruct[slice_idx, :, :]
     
-    # Create figure with 3 subplots
-    fig, axes = plt.subplots(1, 3, figsize=(15, 5))
+    # Create figure with 4 subplots
+    fig, axes = plt.subplots(1, 4, figsize=(20, 5))
     
     # Calculate HU statistics
     cbct_hu_min, cbct_hu_max = cbct.min(), cbct.max()
     cbct_hu_mean = cbct.mean()
     cbct_slice_min, cbct_slice_max = cbct_slice.min(), cbct_slice.max()
     cbct_slice_mean = cbct_slice.mean()
+    
+    ct_gt_hu_min, ct_gt_hu_max = ct_gt.min(), ct_gt.max()
+    ct_gt_hu_mean = ct_gt.mean()
+    ct_gt_slice_min, ct_gt_slice_max = ct_gt_slice.min(), ct_gt_slice.max()
+    ct_gt_slice_mean = ct_gt_slice.mean()
     
     sct_hu_min, sct_hu_max = sct.min(), sct.max()
     sct_hu_mean = sct.mean()
@@ -98,28 +105,38 @@ def visualize_slice(cbct, sct, rtstruct, slice_idx, patient_name, save_path=None
     axes[0].text(0.5, -0.12, f'Slice: [{cbct_slice_min:.3f}, {cbct_slice_max:.3f}], Mean: {cbct_slice_mean:.3f}\n'
                              f'Volume: [{cbct_hu_min:.3f}, {cbct_hu_max:.3f}], Mean: {cbct_hu_mean:.3f}\n'
                              f'(Normalized 0-1)\n'
-                             f'Typical CT HU: Air=-1000, Lung=-500~-900,\n'
-                             f'Soft tissue=-100~100, Bone=200~3000', 
+                             f'CBCT: Less accurate HU', 
                  transform=axes[0].transAxes, ha='center', fontsize=7,
                  bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
     axes[0].axis('off')
     plt.colorbar(im1, ax=axes[0], fraction=0.046, pad=0.04)
     
-    # Output sCT
-    im2 = axes[1].imshow(sct_slice, cmap='gray', vmin=sct.min(), vmax=sct.max())
-    axes[1].set_title(f'Output sCT\nSlice {slice_idx}/{depth-1}', fontsize=12, fontweight='bold')
-    axes[1].text(0.5, -0.12, f'Slice: [{sct_slice_min:.3f}, {sct_slice_max:.3f}], Mean: {sct_slice_mean:.3f}\n'
-                             f'Volume: [{sct_hu_min:.3f}, {sct_hu_max:.3f}], Mean: {sct_hu_mean:.3f}\n'
+    # Ground Truth CT
+    im2 = axes[1].imshow(ct_gt_slice, cmap='gray', vmin=ct_gt.min(), vmax=ct_gt.max())
+    axes[1].set_title(f'Ground Truth CT\nSlice {slice_idx}/{depth-1}', fontsize=12, fontweight='bold')
+    axes[1].text(0.5, -0.12, f'Slice: [{ct_gt_slice_min:.3f}, {ct_gt_slice_max:.3f}], Mean: {ct_gt_slice_mean:.3f}\n'
+                             f'Volume: [{ct_gt_hu_min:.3f}, {ct_gt_hu_max:.3f}], Mean: {ct_gt_hu_mean:.3f}\n'
                              f'(Normalized 0-1)\n'
-                             f'Typical CT HU: Air=-1000, Lung=-500~-900,\n'
-                             f'Soft tissue=-100~100, Bone=200~3000', 
+                             f'CT: Accurate HU values', 
                  transform=axes[1].transAxes, ha='center', fontsize=7,
-                 bbox=dict(boxstyle='round', facecolor='lightblue', alpha=0.5))
+                 bbox=dict(boxstyle='round', facecolor='lightgreen', alpha=0.5))
     axes[1].axis('off')
     plt.colorbar(im2, ax=axes[1], fraction=0.046, pad=0.04)
     
+    # Output sCT
+    im3 = axes[2].imshow(sct_slice, cmap='gray', vmin=sct.min(), vmax=sct.max())
+    axes[2].set_title(f'Output sCT\nSlice {slice_idx}/{depth-1}', fontsize=12, fontweight='bold')
+    axes[2].text(0.5, -0.12, f'Slice: [{sct_slice_min:.3f}, {sct_slice_max:.3f}], Mean: {sct_slice_mean:.3f}\n'
+                             f'Volume: [{sct_hu_min:.3f}, {sct_hu_max:.3f}], Mean: {sct_hu_mean:.3f}\n'
+                             f'(Normalized 0-1)\n'
+                             f'CT: Accurate HU values', 
+                 transform=axes[2].transAxes, ha='center', fontsize=7,
+                 bbox=dict(boxstyle='round', facecolor='lightblue', alpha=0.5))
+    axes[2].axis('off')
+    plt.colorbar(im3, ax=axes[2], fraction=0.046, pad=0.04)
+    
     # Output RTSTRUCTS (with overlay on sCT)
-    axes[2].imshow(sct_slice, cmap='gray', vmin=sct.min(), vmax=sct.max())
+    axes[3].imshow(sct_slice, cmap='gray', vmin=sct.min(), vmax=sct.max())
     # Overlay RTSTRUCTS with different colors for different labels
     rtstruct_colored = np.zeros((*rtstruct_slice.shape, 3))
     unique_labels = np.unique(rtstruct_slice)
@@ -136,9 +153,9 @@ def visualize_slice(cbct, sct, rtstruct, slice_idx, patient_name, save_path=None
             color = colors.get(int(label), [1, 1, 1])  # Default white for unknown labels
             rtstruct_colored[mask] = color
     
-    axes[2].imshow(rtstruct_colored, alpha=0.5, interpolation='nearest')
-    axes[2].set_title(f'Output RTSTRUCTS\nSlice {slice_idx}/{depth-1}', fontsize=12, fontweight='bold')
-    axes[2].axis('off')
+    axes[3].imshow(rtstruct_colored, alpha=0.5, interpolation='nearest')
+    axes[3].set_title(f'Output RTSTRUCTS\nSlice {slice_idx}/{depth-1}', fontsize=12, fontweight='bold')
+    axes[3].axis('off')
     
     # Add legend for RTSTRUCTS
     legend_labels = []
@@ -166,12 +183,12 @@ def visualize_slice(cbct, sct, rtstruct, slice_idx, patient_name, save_path=None
     plt.show()
 
 
-def visualize_interactive(cbct, sct, rtstruct, patient_name):
+def visualize_interactive(cbct, ct_gt, sct, rtstruct, patient_name):
     """Interactive visualization with scrollbar to navigate through all slices"""
     depth = cbct.shape[0]
     
-    # Create figure with 3 subplots
-    fig, axes = plt.subplots(1, 3, figsize=(15, 5))
+    # Create figure with 4 subplots
+    fig, axes = plt.subplots(1, 4, figsize=(20, 5))
     plt.subplots_adjust(bottom=0.18)
     
     # Initial slice (middle)
@@ -179,6 +196,7 @@ def visualize_interactive(cbct, sct, rtstruct, patient_name):
     
     # Get initial slices
     cbct_slice = cbct[initial_slice, :, :]
+    ct_gt_slice = ct_gt[initial_slice, :, :]
     sct_slice = sct[initial_slice, :, :]
     rtstruct_slice = rtstruct[initial_slice, :, :]
     
@@ -191,6 +209,12 @@ def visualize_interactive(cbct, sct, rtstruct, patient_name):
         3: [0, 0, 1],      # Spinal Cord - Blue
         4: [1, 1, 0],      # Esophagus - Yellow
     }
+    # Populate initial overlay
+    for label in unique_labels:
+        if label > 0:
+            mask = rtstruct_slice == label
+            color = colors.get(int(label), [1, 1, 1])
+            rtstruct_colored[mask] = color
     
     # Input CBCT
     im1 = axes[0].imshow(cbct_slice, cmap='gray', vmin=cbct.min(), vmax=cbct.max())
@@ -202,33 +226,46 @@ def visualize_interactive(cbct, sct, rtstruct, patient_name):
     axes[0].text(0.5, -0.12, f'Slice: [{cbct_slice_min:.3f}, {cbct_slice_max:.3f}], Mean: {cbct_slice_mean:.3f}\n'
                              f'Volume: [{cbct_hu_min:.3f}, {cbct_hu_max:.3f}], Mean: {cbct_hu_mean:.3f}\n'
                              f'(Normalized 0-1)\n'
-                             f'Typical CT HU: Air=-1000, Lung=-500~-900,\n'
-                             f'Soft tissue=-100~100, Bone=200~3000', 
+                             f'CBCT: Less accurate HU', 
                  transform=axes[0].transAxes, ha='center', fontsize=7,
                  bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
     axes[0].axis('off')
     
+    # Ground Truth CT
+    im2 = axes[1].imshow(ct_gt_slice, cmap='gray', vmin=ct_gt.min(), vmax=ct_gt.max())
+    ct_gt_hu_min, ct_gt_hu_max = ct_gt.min(), ct_gt.max()
+    ct_gt_hu_mean = ct_gt.mean()
+    ct_gt_slice_min, ct_gt_slice_max = ct_gt_slice.min(), ct_gt_slice.max()
+    ct_gt_slice_mean = ct_gt_slice.mean()
+    axes[1].set_title(f'Ground Truth CT\nSlice {initial_slice}/{depth-1}', fontsize=12, fontweight='bold')
+    axes[1].text(0.5, -0.12, f'Slice: [{ct_gt_slice_min:.3f}, {ct_gt_slice_max:.3f}], Mean: {ct_gt_slice_mean:.3f}\n'
+                             f'Volume: [{ct_gt_hu_min:.3f}, {ct_gt_hu_max:.3f}], Mean: {ct_gt_hu_mean:.3f}\n'
+                             f'(Normalized 0-1)\n'
+                             f'CT: Accurate HU values', 
+                 transform=axes[1].transAxes, ha='center', fontsize=7,
+                 bbox=dict(boxstyle='round', facecolor='lightgreen', alpha=0.5))
+    axes[1].axis('off')
+    
     # Output sCT
-    im2 = axes[1].imshow(sct_slice, cmap='gray', vmin=sct.min(), vmax=sct.max())
+    im3 = axes[2].imshow(sct_slice, cmap='gray', vmin=sct.min(), vmax=sct.max())
     sct_hu_min, sct_hu_max = sct.min(), sct.max()
     sct_hu_mean = sct.mean()
     sct_slice_min, sct_slice_max = sct_slice.min(), sct_slice.max()
     sct_slice_mean = sct_slice.mean()
-    axes[1].set_title(f'Output sCT\nSlice {initial_slice}/{depth-1}', fontsize=12, fontweight='bold')
-    axes[1].text(0.5, -0.12, f'Slice: [{sct_slice_min:.3f}, {sct_slice_max:.3f}], Mean: {sct_slice_mean:.3f}\n'
+    axes[2].set_title(f'Output sCT\nSlice {initial_slice}/{depth-1}', fontsize=12, fontweight='bold')
+    axes[2].text(0.5, -0.12, f'Slice: [{sct_slice_min:.3f}, {sct_slice_max:.3f}], Mean: {sct_slice_mean:.3f}\n'
                              f'Volume: [{sct_hu_min:.3f}, {sct_hu_max:.3f}], Mean: {sct_hu_mean:.3f}\n'
                              f'(Normalized 0-1)\n'
-                             f'Typical CT HU: Air=-1000, Lung=-500~-900,\n'
-                             f'Soft tissue=-100~100, Bone=200~3000', 
-                 transform=axes[1].transAxes, ha='center', fontsize=7,
+                             f'CT: Accurate HU values', 
+                 transform=axes[2].transAxes, ha='center', fontsize=7,
                  bbox=dict(boxstyle='round', facecolor='lightblue', alpha=0.5))
-    axes[1].axis('off')
+    axes[2].axis('off')
     
     # Output RTSTRUCTS (with overlay on sCT)
-    im3_bg = axes[2].imshow(sct_slice, cmap='gray', vmin=sct.min(), vmax=sct.max())
-    im3_overlay = axes[2].imshow(rtstruct_colored, alpha=0.5, interpolation='nearest')
-    axes[2].set_title(f'Output RTSTRUCTS\nSlice {initial_slice}/{depth-1}', fontsize=12, fontweight='bold')
-    axes[2].axis('off')
+    im4_bg = axes[3].imshow(sct_slice, cmap='gray', vmin=sct.min(), vmax=sct.max())
+    im4_overlay = axes[3].imshow(rtstruct_colored, alpha=0.5, interpolation='nearest')
+    axes[3].set_title(f'Output RTSTRUCTS\nSlice {initial_slice}/{depth-1}', fontsize=12, fontweight='bold')
+    axes[3].axis('off')
     
     # Add legend for RTSTRUCTS
     legend_labels = []
@@ -252,17 +289,20 @@ def visualize_interactive(cbct, sct, rtstruct, patient_name):
              ha='center', fontsize=8, style='italic', color='gray')
     
     def update_slice(val):
-        """Update all three images when slider changes"""
+        """Update all four images when slider changes"""
         slice_idx = int(slider.val)
         
         # Get new slices
         cbct_slice = cbct[slice_idx, :, :]
+        ct_gt_slice = ct_gt[slice_idx, :, :]
         sct_slice = sct[slice_idx, :, :]
         rtstruct_slice = rtstruct[slice_idx, :, :]
         
         # Calculate HU stats for current slice
         cbct_slice_min, cbct_slice_max = cbct_slice.min(), cbct_slice.max()
         cbct_slice_mean = cbct_slice.mean()
+        ct_gt_slice_min, ct_gt_slice_max = ct_gt_slice.min(), ct_gt_slice.max()
+        ct_gt_slice_mean = ct_gt_slice.mean()
         sct_slice_min, sct_slice_max = sct_slice.min(), sct_slice.max()
         sct_slice_mean = sct_slice.mean()
         
@@ -280,19 +320,30 @@ def visualize_interactive(cbct, sct, rtstruct, patient_name):
                      transform=axes[0].transAxes, ha='center', fontsize=7,
                      bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
         
-        # Update sCT
-        im2.set_array(sct_slice)
-        axes[1].set_title(f'Output sCT\nSlice {slice_idx}/{depth-1}', fontsize=12, fontweight='bold')
+        # Update Ground Truth CT
+        im2.set_array(ct_gt_slice)
+        axes[1].set_title(f'Ground Truth CT\nSlice {slice_idx}/{depth-1}', fontsize=12, fontweight='bold')
         # Clear previous text and add new
         for txt in axes[1].texts:
             if txt.get_position()[1] < 0:  # Text below axis
                 txt.remove()
-        axes[1].text(0.5, -0.12, f'Slice: [{sct_slice_min:.3f}, {sct_slice_max:.3f}], Mean: {sct_slice_mean:.3f}\n'
+        axes[1].text(0.5, -0.12, f'Slice: [{ct_gt_slice_min:.3f}, {ct_gt_slice_max:.3f}], Mean: {ct_gt_slice_mean:.3f}\n'
                                  f'(Normalized 0-1)\n'
-                                 f'CT: Accurate HU values\n'
-                                 f'Air=-1000, Lung=-500~-900,\n'
-                                 f'Soft tissue=-100~100, Bone=200~3000', 
+                                 f'CT: Accurate HU values', 
                      transform=axes[1].transAxes, ha='center', fontsize=7,
+                     bbox=dict(boxstyle='round', facecolor='lightgreen', alpha=0.5))
+        
+        # Update sCT
+        im3.set_array(sct_slice)
+        axes[2].set_title(f'Output sCT\nSlice {slice_idx}/{depth-1}', fontsize=12, fontweight='bold')
+        # Clear previous text and add new
+        for txt in axes[2].texts:
+            if txt.get_position()[1] < 0:  # Text below axis
+                txt.remove()
+        axes[2].text(0.5, -0.12, f'Slice: [{sct_slice_min:.3f}, {sct_slice_max:.3f}], Mean: {sct_slice_mean:.3f}\n'
+                                 f'(Normalized 0-1)\n'
+                                 f'CT: Accurate HU values', 
+                     transform=axes[2].transAxes, ha='center', fontsize=7,
                      bbox=dict(boxstyle='round', facecolor='lightblue', alpha=0.5))
         
         # Update RTSTRUCTS overlay
@@ -303,9 +354,9 @@ def visualize_interactive(cbct, sct, rtstruct, patient_name):
                 color = colors.get(int(label), [1, 1, 1])
                 rtstruct_colored[mask] = color
         
-        im3_bg.set_array(sct_slice)
-        im3_overlay.set_array(rtstruct_colored)
-        axes[2].set_title(f'Output RTSTRUCTS\nSlice {slice_idx}/{depth-1}', fontsize=12, fontweight='bold')
+        im4_bg.set_array(sct_slice)
+        im4_overlay.set_array(rtstruct_colored)
+        axes[3].set_title(f'Output RTSTRUCTS\nSlice {slice_idx}/{depth-1}', fontsize=12, fontweight='bold')
         
         fig.canvas.draw_idle()
     
@@ -329,7 +380,7 @@ def visualize_interactive(cbct, sct, rtstruct, patient_name):
     plt.show()
 
 
-def visualize_all_slices(cbct, sct, rtstruct, patient_name, output_dir='./visualizations'):
+def visualize_all_slices(cbct, ct_gt, sct, rtstruct, patient_name, output_dir='./visualizations'):
     """Create a grid visualization of multiple slices"""
     depth = cbct.shape[0]
     n_slices = min(9, depth)  # Show up to 9 slices in a 3x3 grid
@@ -396,8 +447,8 @@ def main():
     
     args = parser.parse_args()
     
-    # Load input data
-    cbct, patient_name = load_input_data(args.patient, args.dataroot)
+    # Load input data (CBCT and ground truth CT)
+    cbct, ct_gt, patient_name = load_input_data(args.patient, args.dataroot)
     
     # Load output data
     sct, rtstruct = load_output_data(patient_name, args.results_dir)
@@ -405,15 +456,17 @@ def main():
     # Verify shapes match
     if cbct.shape != sct.shape:
         print(f"Warning: Shape mismatch! CBCT: {cbct.shape}, sCT: {sct.shape}")
+    if cbct.shape != ct_gt.shape:
+        print(f"Warning: Shape mismatch! CBCT: {cbct.shape}, CT (GT): {ct_gt.shape}")
     
     # Visualize
     if args.interactive:
-        visualize_interactive(cbct, sct, rtstruct, patient_name)
+        visualize_interactive(cbct, ct_gt, sct, rtstruct, patient_name)
     elif args.all_slices:
-        visualize_all_slices(cbct, sct, rtstruct, patient_name, args.save)
+        visualize_all_slices(cbct, ct_gt, sct, rtstruct, patient_name, args.save)
     else:
         slice_idx = args.slice if args.slice is not None else cbct.shape[0] // 2
-        visualize_slice(cbct, sct, rtstruct, slice_idx, patient_name, args.save)
+        visualize_slice(cbct, ct_gt, sct, rtstruct, slice_idx, patient_name, args.save)
 
 
 if __name__ == '__main__':
